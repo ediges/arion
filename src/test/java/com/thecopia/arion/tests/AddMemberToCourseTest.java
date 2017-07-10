@@ -7,6 +7,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.thecopia.arion.pages.CourseNotebook;
 import com.thecopia.arion.pages.CoursePage;
 import com.thecopia.arion.pages.HomePage;
 import com.thecopia.arion.pages.LoginPage;
@@ -31,13 +32,15 @@ public class AddMemberToCourseTest {
 	}
 
 	@Test
-	public void loginAsTeacher() {
+	public void loginAsTeacher() throws InterruptedException {
 		log.info("Test 'AddMemberToCourseTest' starting...");
 		LoginPage loginPage = new LoginPage(driver);
 		HomePage homePage = loginPage.login("t1@mailinator.com", "123456");
 		String courseTitle = "2014-Art 2014";
 		CoursePage coursePage = homePage.openCourcePage(courseTitle);
-		coursePage.logout();
+		CourseNotebook courseNotebookPage = coursePage.openCourseNotebook();
+//		Thread.sleep(1000);
+		courseNotebookPage.logout();
 		log.info("Test 'AddMemberToCourseTest' completed.");
 	}
 

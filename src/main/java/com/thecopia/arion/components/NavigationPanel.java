@@ -1,13 +1,21 @@
 package com.thecopia.arion.components;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
+import com.thecopia.arion.pages.CoursePage;
 import com.thecopia.arion.pages.HomePage;
 import com.thecopia.arion.pages.LoginPage;
 
-public class NavigationPanel {
+public class NavigationPanel extends LoadableComponent<NavigationPanel> {
+	
+	static Logger log = Logger.getLogger(CoursePage.class);
 	
 	@FindBy (css = ".topMenuItem [key*='home.my.courses']")
 	WebElement mnuMyCources;
@@ -39,6 +47,23 @@ public class NavigationPanel {
 	public HomePage goHomePage() {
 		mnuMyCources.click();
 		return new HomePage(driver);
+	}
+
+	@Override
+	protected void isLoaded() throws Error {
+		try {
+			Assert.assertTrue(mnuUserMenu.isDisplayed());
+			log.debug("Navigation panel is loaded");
+		} catch (Exception e) {
+			throw new AssertionError();
+		}
+	}
+
+	@Override
+	protected void load() {
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOf(mnuUserMenu));
+		
 	}
 	
 }

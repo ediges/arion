@@ -42,8 +42,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		navPanel = PageFactory.initElements(driver, NavigationPanel.class);
 		this.get();
+		navPanel = PageFactory.initElements(driver, NavigationPanel.class);
 	}
 	
 	public LoginPage logout() {

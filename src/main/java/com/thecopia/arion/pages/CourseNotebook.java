@@ -15,40 +15,40 @@ import org.testng.Assert;
 
 import com.thecopia.arion.components.NavigationPanel;
 
-public class CoursePage extends LoadableComponent<CoursePage> {
+public class CourseNotebook extends LoadableComponent<CourseNotebook> {
 
-	static Logger log = Logger.getLogger(CoursePage.class);
+	static Logger log = Logger.getLogger(CourseNotebook.class);
 
 	WebDriver driver;
 
 	NavigationPanel navPanel;
 
-	@FindBy(css = "[key='course.library']")
+	@FindBy(css = ".filter-row")
 	@CacheLookup
-	WebElement lblCourseLibrary;
+	WebElement elmBooksFilter;
 
-	@FindBy(id = "courseTitle")
-	@CacheLookup
-	WebElement lblCourceTitle;
-
-	@FindBy(css = ".library-item")
-	@CacheLookup
-	List<WebElement> elmLibraryItem;
+//	@FindBy(id = "courseTitle")
+//	@CacheLookup
+//	WebElement lblCourceTitle;
+//
+//	@FindBy(css = ".library-item")
+//	@CacheLookup
+//	List<WebElement> elmLibraryItem;
+//	
+//	@FindBy (css = "a[href*='curriculum']")
+//	@CacheLookup
+//	WebElement mnuLibrary;
+//
+//	@FindBy (css = "a[href*='questionsAnswers']")
+//	@CacheLookup
+//	WebElement mnuAssessments;
+//
+//	@FindBy (css = "a[href*='notes']")
+//	@CacheLookup
+//	WebElement mnuNotes;
 	
-	@FindBy (css = "a[href*='curriculum']")
-	@CacheLookup
-	WebElement mnuLibrary;
-
-	@FindBy (css = "a[href*='questionsAnswers']")
-	@CacheLookup
-	WebElement mnuAssessments;
-
-	@FindBy (css = "a[href*='notes']")
-	@CacheLookup
-	WebElement mnuNotebook;
 	
-	
-	public CoursePage(WebDriver driver) {
+	public CourseNotebook(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		this.get();
@@ -62,10 +62,10 @@ public class CoursePage extends LoadableComponent<CoursePage> {
 	@Override
 	protected void isLoaded() throws Error {
 		try {
-			Assert.assertTrue(lblCourceTitle.isDisplayed());
-			log.debug("Course page is loaded");
+			Assert.assertTrue(elmBooksFilter.isDisplayed());
+			log.debug("Course Notebook page is loaded");
 		} catch (Exception e) {
-			log.debug("Course page Assertion Error");
+			log.debug("Course Notebook page Assertion Error");
 			throw new AssertionError();
 		}
 	}
@@ -73,13 +73,9 @@ public class CoursePage extends LoadableComponent<CoursePage> {
 	@Override
 	protected void load() {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOf(lblCourceTitle));
-		log.debug("Course page load()");
+		wait.until(ExpectedConditions.visibilityOf(elmBooksFilter));
+		log.debug("Course Notebook page load()");
 	}
 	
-	public CourseNotebook openCourseNotebook() {
-		mnuNotebook.click();
-		return new CourseNotebook(driver);
-	}
 
 }

@@ -1,0 +1,9 @@
+
+<!-- <?xml version="1.0" encoding="UTF-8"?> --><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Component Tests" parallel="classes" thread-count="5">
+	<test name="All">
+		<packages>
+			<package name="com.thecopia.arion.tests" />
+		</packages>
+	</test>
+</suite>

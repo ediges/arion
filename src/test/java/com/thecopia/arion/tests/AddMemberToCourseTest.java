@@ -7,19 +7,19 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.thecopia.arion.pages.CoursePage;
 import com.thecopia.arion.pages.HomePage;
 import com.thecopia.arion.pages.LoginPage;
 
-public class LoginTest {
+public class AddMemberToCourseTest {
 
-	static Logger log = Logger.getLogger(LoginTest.class);
+	static Logger log = Logger.getLogger(AddMemberToCourseTest.class);
 	
 	WebDriver driver;
 	String baseUrl;
 
 	@BeforeClass
 	public void setUp() {
-//		baseUrl = "https://edu.thecopia.com";
 		System.setProperty("webdriver.chrome.driver","chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
@@ -32,16 +32,13 @@ public class LoginTest {
 
 	@Test
 	public void loginAsTeacher() {
-		log.info("Test 'LoginPage' starting...");
-//		driver.get(baseUrl);
+		log.info("Test 'AddMemberToCourseTest' starting...");
 		LoginPage loginPage = new LoginPage(driver);
 		HomePage homePage = loginPage.login("t1@mailinator.com", "123456");
 		String courseTitle = "2014-Art 2014";
-		if (homePage.isCourseExists(courseTitle)) {
-			log.info("Course " + courseTitle + " is exists");
-		}
-		homePage.logout();
-		log.info("Test 'LoginPage' completed.");
+		CoursePage coursePage = homePage.openCourcePage(courseTitle);
+		coursePage.logout();
+		log.info("Test 'AddMemberToCourseTest' completed.");
 	}
 
 }

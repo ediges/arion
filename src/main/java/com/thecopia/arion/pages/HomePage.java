@@ -1,5 +1,8 @@
 package com.thecopia.arion.pages;
 
+import java.util.List;
+
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -14,6 +17,8 @@ import com.thecopia.arion.components.NavigationPanel;
 
 public class HomePage extends LoadableComponent<HomePage> {
 	
+	static Logger log = Logger.getLogger(HomePage.class);
+
 	WebDriver driver;
 	
 	NavigationPanel navPanel;
@@ -25,6 +30,14 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy (css = "[ng-bind*='home.my.courses']")
 	@CacheLookup
 	WebElement lblMyCources;
+	
+	@FindBy (css = "[ng-click*='getCourseInfo']")
+	@CacheLookup
+	List<WebElement> myCources;
+	
+	
+	
+	
 	
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
@@ -39,9 +52,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@Override
 	protected void isLoaded() throws Error {
-		System.out.println("HomePage isLoaded()");
 		try {
 			Assert.assertTrue(lblMyCources.isDisplayed());
+			log.debug("Home page is loaded");
 		} catch (Exception e) {
 			throw new AssertionError();
 		}
@@ -49,10 +62,28 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@Override
 	protected void load() {
-		System.out.println("HomePage load()");
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOf(lblMyCources));
 	}
 	
 
+	public boolean isCourseExists(String courseTitle) {
+		for (WebElement myCource : myCources) {
+			if (myCource.getAttribute("title").equalsIgnoreCase(courseTitle)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public CoursePage openCourcePage(String courseTitle) {
+		for (WebElement myCource : myCources) {
+			if (myCource.getAttribute("title").equalsIgnoreCase(courseTitle)) {
+				myCource.click();
+				return new CoursePage(driver);
+			}
+		}
+		log.debug("Course " + courseTitle + " is not found");
+		return null;
+	}
 }

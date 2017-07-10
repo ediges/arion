@@ -1,6 +1,6 @@
 package com.thecopia.arion.pages;
 
-import static org.testng.Assert.assertTrue;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -13,45 +13,44 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-public class LoginPage extends LoadableComponent<LoginPage> {
+import com.thecopia.arion.components.NavigationPanel;
+
+public class CoursePage extends LoadableComponent<CoursePage> {
 
 	static Logger log = Logger.getLogger(CoursePage.class);
 
-	@FindBy(name = "usernameOrEmail")
-	@CacheLookup
-	WebElement edtUsername;
-
-	@FindBy(name = "password")
-	@CacheLookup
-	WebElement edtPassword;
-
-	@FindBy(css = ".submit-button")
-	@CacheLookup
-	WebElement btnLogin;
-
 	WebDriver driver;
-	String baseUrl = "https://edu.thecopia.com";
 
-	public LoginPage(WebDriver driver) {
+	NavigationPanel navPanel;
+
+	@FindBy(css = "[key='course.library']")
+	@CacheLookup
+	WebElement lblCourseLibrary;
+
+	@FindBy(id = "#courseTitle")
+	@CacheLookup
+	WebElement lblCourceTitle;
+
+	@FindBy(css = ".library-item")
+	@CacheLookup
+	List<WebElement> elmLibraryItem;
+
+	public CoursePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		navPanel = PageFactory.initElements(driver, NavigationPanel.class);
 		this.get();
 	}
 
-	public HomePage login(String username, String password) {
-		edtUsername.sendKeys(username);
-		edtPassword.sendKeys(password);
-		btnLogin.click();
-		return new HomePage(driver);
-
+	public LoginPage logout() {
+		return navPanel.logout();
 	}
 
 	@Override
-	protected void isLoaded() {
-
+	protected void isLoaded() throws Error {
 		try {
-			Assert.assertTrue(edtUsername.isDisplayed());
-			log.debug("Login page is loaded");
+			Assert.assertTrue(lblCourseLibrary.isDisplayed());
+			log.debug("Course page is loaded");
 		} catch (Exception e) {
 			throw new AssertionError();
 		}
@@ -59,9 +58,8 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 
 	@Override
 	protected void load() {
-		driver.get(baseUrl);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOf(btnLogin));
+		wait.until(ExpectedConditions.visibilityOf(lblCourseLibrary));
 	}
 
 }

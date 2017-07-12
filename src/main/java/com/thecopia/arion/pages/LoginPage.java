@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import com.thecopia.arion.utils.Utils;
+
 public class LoginPage extends LoadableComponent<LoginPage> {
 
 	static Logger log = Logger.getLogger(CoursePage.class);
@@ -50,6 +52,7 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 	protected void isLoaded() {
 
 		try {
+			Utils.waitPageLoading(driver);
 			Assert.assertTrue(edtUsername.isDisplayed());
 			log.debug("Login page is loaded");
 		} catch (Exception e) {
@@ -60,8 +63,12 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 	@Override
 	protected void load() {
 		driver.get(baseUrl);
+//		Utils.waitPageLoading(driver);
+
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOf(btnLogin));
-	}
+		log.debug("Login page load()");
+}
+	
 
 }

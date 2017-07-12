@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.thecopia.arion.components.NavigationPanel;
+import com.thecopia.arion.utils.Utils;
 
 public class HomePage extends LoadableComponent<HomePage> {
 	
@@ -35,15 +36,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@CacheLookup
 	List<WebElement> myCources;
 	
-	
-	
-	
-	
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		this.get();
 		navPanel = PageFactory.initElements(driver, NavigationPanel.class);
+		this.get();
 	}
 	
 	public LoginPage logout() {
@@ -53,6 +50,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@Override
 	protected void isLoaded() throws Error {
 		try {
+			Utils.waitPageLoading(driver);
 			Assert.assertTrue(lblMyCources.isDisplayed());
 			log.debug("Home page is loaded");
 		} catch (Exception e) {
@@ -62,8 +60,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@Override
 	protected void load() {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOf(lblMyCources));
+		Utils.waitForElementVisible(driver, lblMyCources);
+//		WebDriverWait wait = new WebDriverWait(driver, 30);
+//		wait.until(ExpectedConditions.visibilityOf(lblMyCources));
 	}
 	
 

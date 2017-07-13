@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -37,7 +38,7 @@ public class NavigationPanel extends LoadableComponent<NavigationPanel> {
 	@CacheLookup
 	WebElement mnuUserMenu;
 	
-	@FindBy (css = ".dropdown-menu li a[href*='logout']")
+	@FindBy (css = "a[href*='logout']")
 	@CacheLookup
 	WebElement itemSignOut;	
 	
@@ -45,18 +46,11 @@ public class NavigationPanel extends LoadableComponent<NavigationPanel> {
 	
 	public NavigationPanel(WebDriver driver) {
 		this.driver = driver;
+		PageFactory.initElements(driver, this);
 	}
 
 	public LoginPage logout() {
-		log.debug("Logout started ...");
-//		Utils.waitForElementVisible(driver, mnuUserMenu);
-//		Utils.elementClick(driver, mnuUserMenu);
-//		Utils.waitForElementVisible(driver, itemSignOut);
-//		Utils.elementClick(driver, itemSignOut);
-		
-		Utils.clickOnElement(driver, mnuUserMenu);
-		Utils.clickOnElement(driver, itemSignOut);
-		
+		driver.get("https://edu.thecopia.com/temp/logout");
 		return new LoginPage(driver);
 	}
 	
@@ -69,7 +63,6 @@ public class NavigationPanel extends LoadableComponent<NavigationPanel> {
 	protected void isLoaded() throws Error {
 		try {
 			Assert.assertTrue(mnuUserMenu.isDisplayed());
-			log.debug("Navigation panel is loaded");
 		} catch (Exception e) {
 			throw new AssertionError();
 		}
@@ -77,9 +70,7 @@ public class NavigationPanel extends LoadableComponent<NavigationPanel> {
 
 	@Override
 	protected void load() {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOf(mnuUserMenu));
-		
+		Utils.waitForElementVisible(driver, mnuUserMenu);
 	}
 	
 }

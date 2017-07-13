@@ -36,10 +36,16 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@CacheLookup
 	List<WebElement> myCources;
 	
+	@FindBy (css = ".btn[ng-click='joinCourse()']")
+	@CacheLookup
+	WebElement btnJoinCourse;
+
+	
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		navPanel = PageFactory.initElements(driver, NavigationPanel.class);
+		this.navPanel = new NavigationPanel(driver);
+//		navPanel = PageFactory.initElements(driver, NavigationPanel.class);
 		this.get();
 	}
 	
@@ -61,8 +67,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@Override
 	protected void load() {
 		Utils.waitForElementVisible(driver, lblMyCources);
-//		WebDriverWait wait = new WebDriverWait(driver, 30);
-//		wait.until(ExpectedConditions.visibilityOf(lblMyCources));
 	}
 	
 
@@ -78,7 +82,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public CoursePage openCourcePage(String courseTitle) {
 		for (WebElement myCource : myCources) {
 			if (myCource.getAttribute("title").equalsIgnoreCase(courseTitle)) {
-				myCource.click();
+				Utils.clickOn(driver, myCource);//myCource.click();
 				return new CoursePage(driver);
 			}
 		}

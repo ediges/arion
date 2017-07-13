@@ -35,29 +35,33 @@ public class CoursePage extends LoadableComponent<CoursePage> {
 	@FindBy(css = ".library-item")
 	@CacheLookup
 	List<WebElement> elmLibraryItems;
-	
-	@FindBy (css = ".library-item a[class*='title']")
+
+	@FindBy(css = ".library-item")
+	@CacheLookup
+	WebElement elmLibraryItem;
+
+	@FindBy(css = ".library-item a[class*='title']")
 	@CacheLookup
 	List<WebElement> booksTitles;
-	
-	@FindBy (css = "a[href*='curriculum']")
+
+	@FindBy(css = "a[href*='curriculum']")
 	@CacheLookup
 	WebElement mnuLibrary;
 
-	@FindBy (css = "a[href*='questionsAnswers']")
+	@FindBy(css = "a[href*='questionsAnswers']")
 	@CacheLookup
 	WebElement mnuAssessments;
 
-//	@FindBy (css = "a[href*='notes']")
-	@FindBy (css = "#courseLeftNavigation li[ng-show='menuItems.notebook']")
+	// @FindB?y(css = "li[ng-show='menuItems.notebook']")
+	@FindBy(css = "a[href*='notes']")
 	@CacheLookup
 	WebElement mnuNotebook;
-	
-	
+
 	public CoursePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		navPanel = PageFactory.initElements(driver, NavigationPanel.class);
+		this.navPanel = new NavigationPanel(driver);
+		// navPanel = PageFactory.initElements(driver, NavigationPanel.class);
 		log.debug("Loading Course page...");
 		this.get();
 		log.debug("Course page is loaded");
@@ -71,28 +75,23 @@ public class CoursePage extends LoadableComponent<CoursePage> {
 	protected void isLoaded() throws Error {
 		try {
 			Utils.waitPageLoading(driver);
-			Thread.sleep(1000);
-			Assert.assertTrue(mnuNotebook.isDisplayed());
+			Assert.assertTrue(elmLibraryItem.isDisplayed());
 		} catch (Exception e) {
-			log.debug("Course page Assertion Error");
 			throw new AssertionError();
 		}
 	}
 
 	@Override
 	protected void load() {
-		Utils.waitForElementVisible(driver, mnuNotebook);
-//		WebDriverWait wait = new WebDriverWait(driver, 30);
-//		wait.until(ExpectedConditions.visibilityOf(mnuNotebook));
-		log.debug("Course page load()");
+		Utils.waitForElementVisible(driver, elmLibraryItem);
 	}
-	
+
 	public CourseNotebook openCourseNotebook() {
-		mnuNotebook.click();
+		Utils.clickOn(driver, mnuNotebook);
 		return new CourseNotebook(driver);
 	}
-	
-	public boolean isBookExistsInCource (String bookTitle) {
+
+	public boolean isBookExistsInCource(String bookTitle) {
 		for (WebElement title : booksTitles) {
 			if (title.getAttribute("title").equalsIgnoreCase(bookTitle)) {
 				log.debug("Book '" + bookTitle + "' is exists in cource library");
@@ -102,6 +101,5 @@ public class CoursePage extends LoadableComponent<CoursePage> {
 		log.debug("Book '" + bookTitle + "' is NOT exists in cource library");
 		return false;
 	}
-
 
 }

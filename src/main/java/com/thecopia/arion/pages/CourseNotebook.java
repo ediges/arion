@@ -32,31 +32,20 @@ public class CourseNotebook extends LoadableComponent<CourseNotebook> {
 	@CacheLookup
 	WebElement navNavTabs;
 
-//	@FindBy(id = "courseTitle")
-//	@CacheLookup
-//	WebElement lblCourceTitle;
-//
+	@FindBy (css = ".filterSelect")
+	@CacheLookup
+	WebElement dropNotesFilter;
+	
+	
 	@FindBy(css = ".answer.ng-binding")
 	@CacheLookup
 	List<WebElement> notesContents;
-//	
-//	@FindBy (css = "a[href*='curriculum']")
-//	@CacheLookup
-//	WebElement mnuLibrary;
-//
-//	@FindBy (css = "a[href*='questionsAnswers']")
-//	@CacheLookup
-//	WebElement mnuAssessments;
-//
-//	@FindBy (css = "a[href*='notes']")
-//	@CacheLookup
-//	WebElement mnuNotes;
-	
 	
 	public CourseNotebook(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		navPanel = PageFactory.initElements(driver, NavigationPanel.class);
+		this.navPanel = new NavigationPanel(driver);
+//		navPanel = PageFactory.initElements(driver, NavigationPanel.class);
 		log.debug("Loading Course Notebook page ...");
 		this.get();
 		log.debug("Course Notebook page is loaded");
@@ -70,7 +59,7 @@ public class CourseNotebook extends LoadableComponent<CourseNotebook> {
 	protected void isLoaded() throws Error {
 		try {
 			Utils.waitPageLoading(driver);
-			Assert.assertTrue(navNavTabs.isDisplayed());
+			Assert.assertTrue(dropNotesFilter.isDisplayed());
 		} catch (Exception e) {
 			log.debug("Course Notebook page Assertion Error");
 			throw new AssertionError();
@@ -79,8 +68,7 @@ public class CourseNotebook extends LoadableComponent<CourseNotebook> {
 
 	@Override
 	protected void load() {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOf(navNavTabs));
+		Utils.waitForElementVisible(driver, dropNotesFilter);
 	}
 	
 	

@@ -49,12 +49,10 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 	}
 
 	@Override
-	protected void isLoaded() {
-
+	protected void isLoaded() throws Error{
 		try {
 			Utils.waitPageLoading(driver);
 			Assert.assertTrue(edtUsername.isDisplayed());
-			log.debug("Login page is loaded");
 		} catch (Exception e) {
 			throw new AssertionError();
 		}
@@ -63,11 +61,7 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 	@Override
 	protected void load() {
 		driver.get(baseUrl);
-//		Utils.waitPageLoading(driver);
-
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOf(btnLogin));
-		log.debug("Login page load()");
+		Utils.waitForElementVisible(driver, btnLogin);
 }
 	
 

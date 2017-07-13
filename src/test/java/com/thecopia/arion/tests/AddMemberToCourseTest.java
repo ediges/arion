@@ -38,8 +38,6 @@ public class AddMemberToCourseTest {
 //		driver = new ChromeDriver();
 
 		driver.manage().window().maximize();
-
-	
 	}
 
 	@AfterClass
@@ -48,18 +46,18 @@ public class AddMemberToCourseTest {
 	}
 
 	@Test
-	public void addCourceMember() throws InterruptedException {
-		log.info("Test 'AddMemberToCourseTest' starting...");
+	public void addCourseMember1() throws InterruptedException {
+		log.info("Test 'addCourseMember1' starting...");
 		LoginPage loginPage = new LoginPage(driver);
 		HomePage homePage = loginPage.login("t1@mailinator.com", "123456");
 		String courseTitle = "2014-Art 2014";
 		CoursePage coursePage = homePage.openCourcePage(courseTitle);
 		coursePage.isBookExistsInCource("Neebo Student Network");
-//		coursePage.logout();
 		CourseNotebook courseNotebookPage = coursePage.openCourseNotebook();
 		courseNotebookPage.isNoteExistsInCource("teacher 1");
 		courseNotebookPage.logout();
-		log.info("Test 'AddMemberToCourseTest' completed.");
+		log.info("Test 'addCourseMember1' completed.");
 	}
+
 
 }

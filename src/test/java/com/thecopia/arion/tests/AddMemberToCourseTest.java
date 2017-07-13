@@ -25,7 +25,7 @@ public class AddMemberToCourseTest {
 	@BeforeClass
 	public void setUp() {
 		// Firefox settings
-		System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "C:\\automation\\drivers\\geckodriver.exe");
 		FirefoxOptions options = new FirefoxOptions();
 		options.setBinary("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
 		DesiredCapabilities capabilities = DesiredCapabilities.firefox();

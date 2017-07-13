@@ -31,7 +31,6 @@ public class AddMemberToCourseTest {
 		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 		capabilities.setCapability("moz:firefoxOptions", options);
 		driver = new FirefoxDriver(capabilities);
-		driver = new FirefoxDriver();
 
 		// Chrome seetings
 //		System.setProperty("webdriver.chrome.driver","chromedriver.exe");

@@ -25,17 +25,17 @@ public class AddMemberToCourseTest {
 	@BeforeClass
 	public void setUp() {
 		// Firefox settings
-//		System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
-//		FirefoxOptions options = new FirefoxOptions();
-//		options.setBinary("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
-//		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-//		capabilities.setCapability("moz:firefoxOptions", options);
-//		driver = new FirefoxDriver(capabilities);
-//		driver = new FirefoxDriver();
+		System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+		FirefoxOptions options = new FirefoxOptions();
+		options.setBinary("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
+		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+		capabilities.setCapability("moz:firefoxOptions", options);
+		driver = new FirefoxDriver(capabilities);
+		driver = new FirefoxDriver();
 
 		// Chrome seetings
-		System.setProperty("webdriver.chrome.driver","chromedriver.exe");
-		driver = new ChromeDriver();
+//		System.setProperty("webdriver.chrome.driver","chromedriver.exe");
+//		driver = new ChromeDriver();
 
 		driver.manage().window().maximize();
 	}

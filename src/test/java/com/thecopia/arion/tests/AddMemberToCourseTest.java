@@ -28,7 +28,8 @@ public class AddMemberToCourseTest {
 	public void setUp() {
 		driver = Utils.setBrowserUnderTest(System.getenv("ARION_BROWSER"));
 		driver.manage().window().maximize();
-	}
+
+}
 
 	@AfterClass
 	public void tearDown() {
@@ -36,16 +37,19 @@ public class AddMemberToCourseTest {
 	}
 
 	@Test
-	public void addCourseMember1() throws InterruptedException {
+	public void addCourseMember() throws InterruptedException {
+		
 		log.info("Test 'addCourseMember1' starting...");
-		LoginPage loginPage = new LoginPage(driver);
-		HomePage homePage = loginPage.login("t1@mailinator.com", "123456");
-		String courseTitle = "2014-Art 2014";
-		CoursePage coursePage = homePage.openCourcePage(courseTitle);
+		LoginPage loginPageTeacher = new LoginPage(driver);
+		
+		HomePage homePageTeacher = loginPageTeacher.login("t1@mailinator.com", "123456");
+		String courseTitleTeacher = "2014-Art 2014";
+		CoursePage coursePage = homePageTeacher.openCourcePage(courseTitleTeacher);
 		coursePage.isBookExistsInCource("Neebo Student Network");
 		CourseNotebook courseNotebookPage = coursePage.openCourseNotebook();
 		courseNotebookPage.isNoteExistsInCource("teacher 1");
-		courseNotebookPage.logout();
+		courseNotebookPage.logout(driver);
+		
 		log.info("Test 'addCourseMember1' completed.");
 	}
 

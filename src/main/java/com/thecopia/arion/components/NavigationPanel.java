@@ -49,7 +49,7 @@ public class NavigationPanel extends LoadableComponent<NavigationPanel> {
 		PageFactory.initElements(driver, this);
 	}
 
-	public LoginPage logout() {
+	public LoginPage logout(WebDriver driver) {
 		driver.get("https://edu.thecopia.com/temp/logout");
 		return new LoginPage(driver);
 	}

@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import com.thecopia.arion.pages.HomePage;
 import com.thecopia.arion.pages.LoginPage;
+import com.thecopia.arion.utils.Utils;
 
 public class LoginTest {
 
@@ -19,9 +20,7 @@ public class LoginTest {
 
 	@BeforeClass
 	public void setUp() {
-//		baseUrl = "https://edu.thecopia.com";
-		System.setProperty("webdriver.chrome.driver","chromedriver.exe");
-		driver = new ChromeDriver();
+		driver = Utils.setBrowserUnderTest(System.getenv("ARION_BROWSER"));
 		driver.manage().window().maximize();
 	}
 
@@ -31,16 +30,16 @@ public class LoginTest {
 	}
 
 	@Test
-	public void loginAsTeacher() {
-		log.info("Test 'loginAsTeacher' starting...");
+	public void loginAsStudent() {
+		log.info("Test 'loginAsStudent' starting...");
 		LoginPage loginPage = new LoginPage(driver);
-		HomePage homePage = loginPage.login("t1@mailinator.com", "123456");
-		String courseTitle = "2014-Art 2014";
+		HomePage homePage = loginPage.login("ms1@mailinator.com", "123456");
+		String courseTitle = "Algebra-Algebra - Spring - 2014";
 		if (homePage.isCourseExists(courseTitle)) {
 			log.info("Course " + courseTitle + " is exists");
 		}
-		homePage.logout();
-		log.info("Test 'loginAsTeacher' completed.");
+		homePage.logout(driver);
+		log.info("Test 'loginAsStudent' completed.");
 	}
 
 }

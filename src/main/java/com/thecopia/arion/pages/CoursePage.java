@@ -64,8 +64,8 @@ public class CoursePage extends LoadableComponent<CoursePage> {
 		log.debug("Course page is loaded");
 	}
 
-	public LoginPage logout() {
-		return navPanel.logout();
+	public LoginPage logout(WebDriver driver) {
+		return navPanel.logout(driver);
 	}
 
 	@Override

@@ -49,8 +49,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 		log.debug("Home page is loaded");
 	}
 	
-	public LoginPage logout() {
-		return navPanel.logout();
+	public LoginPage logout(WebDriver driver) {
+		return navPanel.logout(driver);
 	}
 
 	@Override

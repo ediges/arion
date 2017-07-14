@@ -45,8 +45,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		this.navPanel = new NavigationPanel(driver);
-//		navPanel = PageFactory.initElements(driver, NavigationPanel.class);
 		this.get();
+		log.debug("Home page is loaded");
 	}
 	
 	public LoginPage logout() {
@@ -58,7 +58,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		try {
 			Utils.waitPageLoading(driver);
 			Assert.assertTrue(lblMyCources.isDisplayed());
-			log.debug("Home page is loaded");
 		} catch (Exception e) {
 			throw new AssertionError();
 		}

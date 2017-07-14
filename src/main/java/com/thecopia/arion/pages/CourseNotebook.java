@@ -45,8 +45,6 @@ public class CourseNotebook extends LoadableComponent<CourseNotebook> {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		this.navPanel = new NavigationPanel(driver);
-//		navPanel = PageFactory.initElements(driver, NavigationPanel.class);
-		log.debug("Loading Course Notebook page ...");
 		this.get();
 		log.debug("Course Notebook page is loaded");
 	}
@@ -61,7 +59,6 @@ public class CourseNotebook extends LoadableComponent<CourseNotebook> {
 			Utils.waitPageLoading(driver);
 			Assert.assertTrue(dropNotesFilter.isDisplayed());
 		} catch (Exception e) {
-			log.debug("Course Notebook page Assertion Error");
 			throw new AssertionError();
 		}
 	}
@@ -75,11 +72,9 @@ public class CourseNotebook extends LoadableComponent<CourseNotebook> {
 	public boolean isNoteExistsInCource (String noteSearchTerm) {
 		for (WebElement noteContent : notesContents) {
 			if (noteContent.getText().contains(noteSearchTerm)) {
-				log.debug("Note with search term '" + noteSearchTerm + "' is exists in the cource notebook");
 				return true;
 			}
 		}
-		log.debug("Note with search term '" + noteSearchTerm + "' is NOT exists in the cource notebook");
 		return false;
 	}
 

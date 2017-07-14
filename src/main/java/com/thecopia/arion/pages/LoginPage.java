@@ -38,6 +38,7 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		this.get();
+		log.debug("Login page is loaded");
 	}
 
 	public HomePage login(String username, String password) {

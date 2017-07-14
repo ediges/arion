@@ -32,8 +32,7 @@ public class LoginTest {
 
 	@Test
 	public void loginAsTeacher() {
-		log.info("Test 'LoginPage' starting...");
-//		driver.get(baseUrl);
+		log.info("Test 'loginAsTeacher' starting...");
 		LoginPage loginPage = new LoginPage(driver);
 		HomePage homePage = loginPage.login("t1@mailinator.com", "123456");
 		String courseTitle = "2014-Art 2014";
@@ -41,7 +40,7 @@ public class LoginTest {
 			log.info("Course " + courseTitle + " is exists");
 		}
 		homePage.logout();
-		log.info("Test 'LoginPage' completed.");
+		log.info("Test 'loginAsTeacher' completed.");
 	}
 
 }

@@ -52,7 +52,6 @@ public class CoursePage extends LoadableComponent<CoursePage> {
 	@CacheLookup
 	WebElement mnuAssessments;
 
-	// @FindB?y(css = "li[ng-show='menuItems.notebook']")
 	@FindBy(css = "a[href*='notes']")
 	@CacheLookup
 	WebElement mnuNotebook;
@@ -61,8 +60,6 @@ public class CoursePage extends LoadableComponent<CoursePage> {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		this.navPanel = new NavigationPanel(driver);
-		// navPanel = PageFactory.initElements(driver, NavigationPanel.class);
-		log.debug("Loading Course page...");
 		this.get();
 		log.debug("Course page is loaded");
 	}
@@ -94,11 +91,9 @@ public class CoursePage extends LoadableComponent<CoursePage> {
 	public boolean isBookExistsInCource(String bookTitle) {
 		for (WebElement title : booksTitles) {
 			if (title.getAttribute("title").equalsIgnoreCase(bookTitle)) {
-				log.debug("Book '" + bookTitle + "' is exists in cource library");
 				return true;
 			}
 		}
-		log.debug("Book '" + bookTitle + "' is NOT exists in cource library");
 		return false;
 	}
 

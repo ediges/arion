@@ -14,6 +14,8 @@ import com.thecopia.arion.pages.CourseNotebook;
 import com.thecopia.arion.pages.CoursePage;
 import com.thecopia.arion.pages.HomePage;
 import com.thecopia.arion.pages.LoginPage;
+import com.thecopia.arion.utils.Utils;
+
 
 public class AddMemberToCourseTest {
 
@@ -24,18 +26,7 @@ public class AddMemberToCourseTest {
 
 	@BeforeClass
 	public void setUp() {
-		// Firefox settings
-//		System.setProperty("webdriver.gecko.driver", "C://automation//drivers//geckodriver.exe");
-//		FirefoxOptions options = new FirefoxOptions();
-//		options.setBinary("C://Program Files (x86)//Mozilla Firefox//firefox.exe");
-//		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-//		capabilities.setCapability("moz:firefoxOptions", options);
-//		driver = new FirefoxDriver(capabilities);
-
-		// Chrome seetings
-		System.setProperty("webdriver.chrome.driver","C://automation//drivers//chromedriver.exe");
-		driver = new ChromeDriver();
-
+		driver = Utils.setBrowserUnderTest(System.getenv("ARION_BROWSER"));
 		driver.manage().window().maximize();
 	}
 

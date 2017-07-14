@@ -12,6 +12,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<testSuite>${env.ARION_TEST_SUITE}</testSuite>
 	</properties>
 
 	<build>
@@ -22,7 +23,7 @@
 				<version>2.19.1</version>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>testng.xml</suiteXmlFile>
+						<suiteXmlFile>${testSuite}</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>

@@ -15,6 +15,7 @@ import org.testng.annotations.Configuration;
 import com.thecopia.arion.pages.CoursePage;
 import com.thecopia.arion.pages.HomePage;
 import com.thecopia.arion.pages.LoginPage;
+import com.thecopia.arion.pages.PersonalLibraryPage;
 import com.thecopia.arion.utils.Utils;
 
 public class NavigationPanel extends LoadableComponent<NavigationPanel> {
@@ -25,7 +26,7 @@ public class NavigationPanel extends LoadableComponent<NavigationPanel> {
 	@CacheLookup
 	WebElement mnuMyCources;
 
-	@FindBy (css = "href='#/myLibrary'")
+	@FindBy (css = "a[href*='myLibrary']") 
 	@CacheLookup
 	WebElement mnuPersonalLibrary;
 
@@ -33,7 +34,6 @@ public class NavigationPanel extends LoadableComponent<NavigationPanel> {
 	@CacheLookup
 	WebElement mnuReaders;
 
-//	@FindBy (css = ".navbar-nav .userMenuItem")
 	@FindBy (css = ".userMenuItem .caret")
 	@CacheLookup
 	WebElement mnuUserMenu;
@@ -47,16 +47,6 @@ public class NavigationPanel extends LoadableComponent<NavigationPanel> {
 	public NavigationPanel(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-	}
-
-	public LoginPage logout(WebDriver driver) {
-		driver.get("https://edu.thecopia.com/temp/logout");
-		return new LoginPage(driver);
-	}
-	
-	public HomePage goHomePage() {
-		mnuMyCources.click();
-		return new HomePage(driver);
 	}
 
 	@Override
@@ -73,5 +63,28 @@ public class NavigationPanel extends LoadableComponent<NavigationPanel> {
 		Utils.waitForElementVisible(driver, mnuUserMenu);
 	}
 	
+	public LoginPage logout2(WebDriver driver) {
+		driver.get("https://edu.thecopia.com/temp/logout");
+		return new LoginPage(driver);
+	}
+	
+
+	public LoginPage logout(WebDriver driver) {
+//		mnuUserMenu.click();
+//		itemSignOut.click();
+		Utils.clickOn(driver, mnuUserMenu);
+		Utils.clickOn(driver, itemSignOut);
+		return new LoginPage(driver);
+	}
+
+	public HomePage gotoHomePage() {
+		Utils.clickOn(driver, mnuMyCources);
+		return new HomePage(driver);
+	}
+
+	public PersonalLibraryPage gotoPersonalLibraryPage() {
+		Utils.clickOn(driver, mnuPersonalLibrary);
+		return new PersonalLibraryPage(driver);
+	}
 }
 

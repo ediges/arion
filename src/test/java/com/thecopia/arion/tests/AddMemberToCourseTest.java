@@ -10,26 +10,31 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.thecopia.arion.pages.CourseNotebook;
+import com.thecopia.arion.components.CourseSideMenu;
+import com.thecopia.arion.components.NavigationPanel;
+import com.thecopia.arion.pages.CourseAssessmentsPage;
+import com.thecopia.arion.pages.CourseNotebookPage;
 import com.thecopia.arion.pages.CoursePage;
 import com.thecopia.arion.pages.HomePage;
 import com.thecopia.arion.pages.LoginPage;
 import com.thecopia.arion.utils.Utils;
 
-
 public class AddMemberToCourseTest {
 
 	static Logger log = Logger.getLogger(AddMemberToCourseTest.class);
-	
+
 	WebDriver driver;
+	NavigationPanel navigationPanel;
+	CourseSideMenu courseSideMenu;
 	String baseUrl;
 
 	@BeforeClass
 	public void setUp() {
 		driver = Utils.setBrowserUnderTest(System.getenv("ARION_BROWSER"));
 		driver.manage().window().maximize();
-
-}
+		navigationPanel = new NavigationPanel(driver);
+		courseSideMenu = new CourseSideMenu(driver);
+	}
 
 	@AfterClass
 	public void tearDown() {
@@ -38,20 +43,27 @@ public class AddMemberToCourseTest {
 
 	@Test
 	public void addCourseMember() throws InterruptedException {
-		
+
 		log.info("Test 'addCourseMember1' starting...");
 		LoginPage loginPageTeacher = new LoginPage(driver);
-		
+
 		HomePage homePageTeacher = loginPageTeacher.login("t1@mailinator.com", "123456");
 		String courseTitleTeacher = "2014-Art 2014";
-		CoursePage coursePage = homePageTeacher.openCourcePage(courseTitleTeacher);
+		CoursePage coursePage = homePageTeacher.openCoursePage(courseTitleTeacher);
 		coursePage.isBookExistsInCource("Neebo Student Network");
-		CourseNotebook courseNotebookPage = coursePage.openCourseNotebook();
-		courseNotebookPage.isNoteExistsInCource("teacher 1");
-		courseNotebookPage.logout(driver);
+
+		CourseNotebookPage courseNotebookPage = courseSideMenu.gotoCourseNotebook();
+		if (courseNotebookPage.isNoteExistsInCource("teacher 1")) {
+			log.info("Note exists");
+		}
 		
+		CourseAssessmentsPage courseAssessmentsPage = courseSideMenu.gotoCourseAssessments();
+		courseSideMenu.gotoCourseNotebook();
+
+
+		navigationPanel.logout(driver);
+
 		log.info("Test 'addCourseMember1' completed.");
 	}
-
 
 }

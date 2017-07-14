@@ -22,8 +22,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	WebDriver driver;
 	
-	NavigationPanel navPanel;
-	
 	@FindBy (css = ".dropdown.userMenuItem")
 	@CacheLookup
 	WebElement mnuUserMenu;
@@ -44,14 +42,10 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		this.navPanel = new NavigationPanel(driver);
 		this.get();
 		log.debug("Home page is loaded");
 	}
 	
-	public LoginPage logout(WebDriver driver) {
-		return navPanel.logout(driver);
-	}
 
 	@Override
 	protected void isLoaded() throws Error {
@@ -68,7 +62,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Utils.waitForElementVisible(driver, lblMyCources);
 	}
 	
-
 	public boolean isCourseExists(String courseTitle) {
 		for (WebElement myCource : myCources) {
 			if (myCource.getAttribute("title").equalsIgnoreCase(courseTitle)) {
@@ -78,7 +71,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		return false;
 	}
 	
-	public CoursePage openCourcePage(String courseTitle) {
+	public CoursePage openCoursePage(String courseTitle) {
 		for (WebElement myCource : myCources) {
 			if (myCource.getAttribute("title").equalsIgnoreCase(courseTitle)) {
 				Utils.clickOn(driver, myCource);//myCource.click();

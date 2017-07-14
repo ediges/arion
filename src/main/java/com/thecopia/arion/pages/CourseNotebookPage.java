@@ -13,16 +13,15 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import com.thecopia.arion.components.CourseSideMenu;
 import com.thecopia.arion.components.NavigationPanel;
 import com.thecopia.arion.utils.Utils;
 
-public class CourseNotebook extends LoadableComponent<CourseNotebook> {
+public class CourseNotebookPage extends LoadableComponent<CourseNotebookPage> {
 
-	static Logger log = Logger.getLogger(CourseNotebook.class);
+	static Logger log = Logger.getLogger(CourseNotebookPage.class);
 
 	WebDriver driver;
-
-	NavigationPanel navPanel;
 
 	@FindBy(css = ".form-control[name='bookFld']")
 	@CacheLookup
@@ -41,16 +40,11 @@ public class CourseNotebook extends LoadableComponent<CourseNotebook> {
 	@CacheLookup
 	List<WebElement> notesContents;
 	
-	public CourseNotebook(WebDriver driver) {
+	public CourseNotebookPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		this.navPanel = new NavigationPanel(driver);
 		this.get();
 		log.debug("Course Notebook page is loaded");
-	}
-
-	public LoginPage logout(WebDriver driver) {
-		return navPanel.logout(driver);
 	}
 
 	@Override

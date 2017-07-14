@@ -7,6 +7,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.thecopia.arion.components.NavigationPanel;
 import com.thecopia.arion.pages.HomePage;
 import com.thecopia.arion.pages.LoginPage;
 import com.thecopia.arion.utils.Utils;
@@ -16,12 +17,14 @@ public class LoginTest {
 	static Logger log = Logger.getLogger(LoginTest.class);
 	
 	WebDriver driver;
+	NavigationPanel navigationPanel;
 	String baseUrl;
 
 	@BeforeClass
 	public void setUp() {
 		driver = Utils.setBrowserUnderTest(System.getenv("ARION_BROWSER"));
 		driver.manage().window().maximize();
+		navigationPanel = new NavigationPanel(driver);
 	}
 
 	@AfterClass
@@ -38,7 +41,11 @@ public class LoginTest {
 		if (homePage.isCourseExists(courseTitle)) {
 			log.info("Course " + courseTitle + " is exists");
 		}
-		homePage.logout(driver);
+
+		navigationPanel.gotoPersonalLibraryPage();
+		navigationPanel.gotoHomePage();
+		navigationPanel.logout(driver);
+//		homePage.logout(driver);
 		log.info("Test 'loginAsStudent' completed.");
 	}
 

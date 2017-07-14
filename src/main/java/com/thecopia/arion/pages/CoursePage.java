@@ -22,8 +22,6 @@ public class CoursePage extends LoadableComponent<CoursePage> {
 
 	WebDriver driver;
 
-	NavigationPanel navPanel;
-
 	@FindBy(css = "[key='course.library']")
 	@CacheLookup
 	WebElement lblCourseLibrary;
@@ -59,13 +57,8 @@ public class CoursePage extends LoadableComponent<CoursePage> {
 	public CoursePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		this.navPanel = new NavigationPanel(driver);
 		this.get();
 		log.debug("Course page is loaded");
-	}
-
-	public LoginPage logout(WebDriver driver) {
-		return navPanel.logout(driver);
 	}
 
 	@Override
@@ -83,9 +76,9 @@ public class CoursePage extends LoadableComponent<CoursePage> {
 		Utils.waitForElementVisible(driver, elmLibraryItem);
 	}
 
-	public CourseNotebook openCourseNotebook() {
+	public CourseNotebookPage openCourseNotebook() {
 		Utils.clickOn(driver, mnuNotebook);
-		return new CourseNotebook(driver);
+		return new CourseNotebookPage(driver);
 	}
 
 	public boolean isBookExistsInCource(String bookTitle) {

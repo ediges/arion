@@ -6,18 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Configuration;
 
 import com.thecopia.arion.pages.CourseAssessmentsPage;
 import com.thecopia.arion.pages.CourseNotebookPage;
 import com.thecopia.arion.pages.CoursePage;
-import com.thecopia.arion.pages.HomePage;
-import com.thecopia.arion.pages.LoginPage;
-import com.thecopia.arion.pages.PersonalLibraryPage;
 import com.thecopia.arion.utils.Utils;
 
 public class CourseSideMenu extends LoadableComponent<CourseSideMenu> {

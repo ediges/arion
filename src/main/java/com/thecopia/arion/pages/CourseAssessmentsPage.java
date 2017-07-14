@@ -1,7 +1,5 @@
 package com.thecopia.arion.pages;
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

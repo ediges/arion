@@ -27,7 +27,7 @@ public class AddMemberToCourseTest {
 	@BeforeClass
 	public void setUp() {
 //		driver = Utils.setBrowserUnderTest(System.getenv("ARION_BROWSER"));
-		driver = Utils.setBrowserUnderTest("Chrome");
+		driver = Utils.setBrowserUnderTest("Firefox");
 		driver.manage().window().maximize();
 		navigationPanel = new NavigationPanel(driver);
 		courseSideMenu = new CourseSideMenu(driver);

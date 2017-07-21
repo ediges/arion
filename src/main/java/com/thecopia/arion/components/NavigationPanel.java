@@ -70,8 +70,6 @@ public class NavigationPanel extends LoadableComponent<NavigationPanel> {
 	
 
 	public LoginPage logout(WebDriver driver) {
-//		mnuUserMenu.click();
-//		itemSignOut.click();
 		Utils.clickOn(driver, mnuUserMenu);
 		Utils.clickOn(driver, itemSignOut);
 		return new LoginPage(driver);

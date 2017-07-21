@@ -22,7 +22,7 @@ public class LoginTest {
 
 	@BeforeClass
 	public void setUp() {
-		driver = Utils.setBrowserUnderTest(System.getProperty("browser"));
+		driver = Utils.setBrowserUnderTest(System.getProperty("test.browser"));
 		driver.manage().window().maximize();
 		navigationPanel = new NavigationPanel(driver);
 	}
@@ -45,7 +45,6 @@ public class LoginTest {
 		navigationPanel.gotoPersonalLibraryPage();
 		navigationPanel.gotoHomePage();
 		navigationPanel.logout(driver);
-//		homePage.logout(driver);
 		log.info("Test 'loginAsStudent' completed.");
 	}
 

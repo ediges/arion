@@ -56,7 +56,6 @@ public class AddMemberToCourseTest {
 		CourseAssessmentsPage courseAssessmentsPage = courseSideMenu.gotoCourseAssessments();
 		courseSideMenu.gotoCourseNotebook();
 
-
 		navigationPanel.logout(driver);
 
 		log.info("Test 'addCourseMember1' completed.");

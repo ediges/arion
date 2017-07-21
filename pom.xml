@@ -14,6 +14,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<testSuite>${env.ARION_TEST_SUITE}</testSuite>
 		<testSuite>${test.suite}</testSuite>
+		<browser>${test.browser}</browser>
 	</properties>
 
 	<build>
@@ -27,6 +28,12 @@
 						<!-- <suiteXmlFile>testng.xml</suiteXmlFile> -->
 						<suiteXmlFile>${testSuite}</suiteXmlFile>
 					</suiteXmlFiles>
+					<systemProperties>
+						<property>
+							<name>browser</name>
+							<value>${browser}</value>
+						</property>
+					</systemProperties>
 				</configuration>
 			</plugin>
 		</plugins>

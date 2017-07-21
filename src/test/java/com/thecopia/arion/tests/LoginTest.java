@@ -22,7 +22,7 @@ public class LoginTest {
 
 	@BeforeClass
 	public void setUp() {
-		driver = Utils.setBrowserUnderTest(System.getenv("ARION_BROWSER"));
+		driver = Utils.setBrowserUnderTest(System.getProperty("browser"));
 		driver.manage().window().maximize();
 		navigationPanel = new NavigationPanel(driver);
 	}

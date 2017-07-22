@@ -1,13 +1,15 @@
 package com.thecopia.arion.utils;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -36,17 +38,18 @@ public class Utils {
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
 
-	public static WebDriver setBrowserUnderTest(String browser) {
+	public static WebDriver setBrowserUnderTest(String browser) throws MalformedURLException {
 		if (browser.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver","C://automation//drivers//chromedriver.exe");
-			return new ChromeDriver();
+			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+			return new RemoteWebDriver(new URL("http://10.100.102.12:4445/wd/hub"),capabilities);
 		} else {
 			System.setProperty("webdriver.gecko.driver", "C://automation//drivers//geckodriver.exe");
 			FirefoxOptions options = new FirefoxOptions();
 			options.setBinary("C://Program Files (x86)//Mozilla Firefox//firefox.exe");
 			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 			capabilities.setCapability("moz:firefoxOptions", options);
-			return new FirefoxDriver(capabilities);
+			return new RemoteWebDriver(new URL("http://10.100.102.12:4445/wd/hub"),capabilities);
 		} 
 	}
 }

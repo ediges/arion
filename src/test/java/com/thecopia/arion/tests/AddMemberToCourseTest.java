@@ -1,5 +1,7 @@
 package com.thecopia.arion.tests;
 
+import java.net.MalformedURLException;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
@@ -25,8 +27,8 @@ public class AddMemberToCourseTest {
 	String baseUrl;
 
 	@BeforeClass
-	public void setUp() {
-		driver = Utils.setBrowserUnderTest(System.getProperty("browser"));
+	public void setUp() throws MalformedURLException {
+		driver = Utils.setBrowserUnderTest(System.getProperty("test.browser"));
 		driver.manage().window().maximize();
 		navigationPanel = new NavigationPanel(driver);
 		courseSideMenu = new CourseSideMenu(driver);

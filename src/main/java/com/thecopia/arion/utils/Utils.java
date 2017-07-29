@@ -42,14 +42,14 @@ public class Utils {
 		if (browser.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver","C://automation//drivers//chromedriver.exe");
 			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-			return new RemoteWebDriver(new URL("http://edig-home:4444/wd/hub"),capabilities);
+			return new RemoteWebDriver(new URL("http://edig-home:4445/wd/hub"),capabilities);
 		} else {
 			System.setProperty("webdriver.gecko.driver", "C://automation//drivers//geckodriver.exe");
 			FirefoxOptions options = new FirefoxOptions();
 			options.setBinary("C://Program Files (x86)//Mozilla Firefox//firefox.exe");
 			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 			capabilities.setCapability("moz:firefoxOptions", options);
-			return new RemoteWebDriver(new URL("http://edig-home:4444/wd/hub"),capabilities);
+			return new RemoteWebDriver(new URL("http://edig-home:4445/wd/hub"),capabilities);
 		} 
 	}
 }

@@ -55,7 +55,9 @@ public class Utils {
 			options.setBinary("C://Program Files (x86)//Mozilla Firefox//firefox.exe");
 			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 			capabilities.setCapability("moz:firefoxOptions", options);
-			return new FirefoxDriver(capabilities);
+			WebDriver driver = new RemoteWebDriver(new URL("http://danielg:4444/wd/hub"), capabilities);
+			return driver;
+//			return new FirefoxDriver(capabilities);
 		} 
 	}
 }

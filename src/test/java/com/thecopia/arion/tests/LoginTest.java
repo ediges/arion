@@ -1,5 +1,7 @@
 package com.thecopia.arion.tests;
 
+import java.net.MalformedURLException;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,7 +23,7 @@ public class LoginTest {
 	String baseUrl;
 
 	@BeforeClass
-	public void setUp() {
+	public void setUp() throws MalformedURLException {
 		driver = Utils.setBrowserUnderTest(System.getProperty("test.browser"));
 		driver.manage().window().maximize();
 		navigationPanel = new NavigationPanel(driver);

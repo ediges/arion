@@ -2,10 +2,10 @@
 <!-- <?xml version="1.0" encoding="UTF-8"?> --><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Component Tests" parallel="classes" thread-count="5" >
 	<test name="All">
-		<!-- <packages> <package name="com.thecopia.arion.tests" /> </packages> -->
-		<classes>
+		<packages> <package name="com.thecopia.arion.tests" /> </packages>
+		<!-- <classes>
 			<class name="com.thecopia.arion.tests.AddMemberToCourseTest" />
 			<class name="com.thecopia.arion.tests.LoginTest" />
-		</classes>
+		</classes> -->
 	</test>
 </suite>

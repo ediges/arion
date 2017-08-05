@@ -52,9 +52,9 @@ public class Utils {
 
 			//			return new ChromeDriver();
 		} else {
-			System.setProperty("webdriver.gecko.driver", "C://automation//drivers//geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", "C:\\automation\\drivers\\geckodriver.exe");
 			FirefoxOptions options = new FirefoxOptions();
-			options.setBinary("C://Program Files (x86)//Mozilla Firefox//firefox.exe");
+//			options.setBinary("C://Program Files (x86)//Mozilla Firefox//firefox.exe");
 			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 			capabilities.setCapability("moz:firefoxOptions", options);
 			capabilities.setCapability("platform", Platform.WIN10);

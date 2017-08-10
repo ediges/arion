@@ -38,7 +38,8 @@ public class NavigationPanel extends LoadableComponent<NavigationPanel> {
 	@CacheLookup
 	WebElement mnuUserMenu;
 	
-	@FindBy (css = "a[href*='logout']")
+//	@FindBy (css = "a[href*='logout']")
+	@FindBy (css = ".userMenuItem a[href*='logout']")
 	@CacheLookup
 	WebElement itemSignOut;	
 	
@@ -70,8 +71,9 @@ public class NavigationPanel extends LoadableComponent<NavigationPanel> {
 	
 
 	public LoginPage logout(WebDriver driver) {
-		Utils.clickOn(driver, mnuUserMenu);
-		Utils.clickOn(driver, itemSignOut);
+//		Utils.clickOn(driver, mnuUserMenu);
+//		Utils.clickOn(driver, itemSignOut);
+		driver.get("https://edu.thecopia.com/temp/logout");
 		return new LoginPage(driver);
 	}
 

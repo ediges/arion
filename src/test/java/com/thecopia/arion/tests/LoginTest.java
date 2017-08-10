@@ -3,10 +3,12 @@ package com.thecopia.arion.tests;
 import java.net.MalformedURLException;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.thecopia.arion.components.NavigationPanel;
@@ -22,10 +24,13 @@ public class LoginTest {
 	NavigationPanel navigationPanel;
 	String baseUrl;
 
+	@Parameters({"browserName"})
 	@BeforeClass
-	public void setUp() throws MalformedURLException {
-		driver = Utils.setBrowserUnderTest(System.getProperty("test.browser"));
-		driver.manage().window().maximize();
+	public void setUp(String browser) throws MalformedURLException {
+//		driver = Utils.setBrowserUnderTest(System.getProperty("test.browser"));
+		driver = Utils.setBrowserUnderTest(browser);
+		driver.manage().window().setSize(new Dimension(1920, 1080));
+//		driver.manage().window().maximize(); // Could be used with later Firefox releases 
 		navigationPanel = new NavigationPanel(driver);
 	}
 

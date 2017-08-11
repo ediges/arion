@@ -52,11 +52,12 @@ public class Utils {
 
 //		return new ChromeDriver();
 		} else {
-			System.setProperty("webdriver.firefox.marionette", "./geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", "C://automation//drivers");
 //			FirefoxOptions options = new FirefoxOptions();
 //			options.setBinary("C://Program Files (x86)//Mozilla Firefox//firefox.exe");
 			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 //			capabilities.setCapability("moz:firefoxOp1tions", options);
+			capabilities.setCapability("marionette", true);
 			capabilities.setCapability("platform", Platform.WIN10);
 			capabilities.setCapability("browser", "firefox");
 			WebDriver driver = new RemoteWebDriver(new URL("http://danielg:4444/wd/hub"), capabilities);

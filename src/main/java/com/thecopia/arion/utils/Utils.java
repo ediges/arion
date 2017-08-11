@@ -46,16 +46,16 @@ public class Utils {
 		if (browser.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver","C://automation//drivers//chromedriver.exe");
 			
-//			DesiredCapabilities capability = DesiredCapabilities.chrome();
-//			WebDriver driver = new RemoteWebDriver(new URL("http://danielg:4444/wd/hub"), capability);
-			return new ChromeDriver();
+			DesiredCapabilities capability = DesiredCapabilities.chrome();
+			return new RemoteWebDriver(new URL("http://danielg:4444/wd/hub"), capability);
+//			return new ChromeDriver();
 
 //		return new ChromeDriver();
 		} else {
 			System.setProperty("webdriver.gecko.driver", "C://automation//drivers//geckodriver.exe");
-//			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-//			return new RemoteWebDriver(new URL("http://danielg:4444/wd/hub"), capabilities);
-			return new FirefoxDriver();
+			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+			return new RemoteWebDriver(new URL("http://danielg:4444/wd/hub"), capabilities);
+//			return new FirefoxDriver();
 		} 
 	}
 }

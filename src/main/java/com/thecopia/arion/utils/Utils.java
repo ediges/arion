@@ -46,9 +46,9 @@ public class Utils {
 		if (browser.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver","C://automation//drivers//chromedriver.exe");
 			
-			DesiredCapabilities capability = DesiredCapabilities.chrome();
-			WebDriver driver = new RemoteWebDriver(new URL("http://danielg:4444/wd/hub"), capability);
-			return driver;
+//			DesiredCapabilities capability = DesiredCapabilities.chrome();
+//			WebDriver driver = new RemoteWebDriver(new URL("http://danielg:4444/wd/hub"), capability);
+			return new ChromeDriver();
 
 //		return new ChromeDriver();
 		} else {

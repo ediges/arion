@@ -1,7 +1,7 @@
 
 <!-- <?xml version="1.0" encoding="UTF-8"?> --><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Component Tests" parallel="tests" thread-count="3">
-	<test name="Chrome">
+<suite name="Component Tests" parallel="tests" thread-count="4">
+	<test name="test1">
 		<parameter name="browserName" value="Chrome" />
 		<packages>
 			<package name="com.thecopia.arion.tests" />
@@ -9,7 +9,19 @@
 		<!-- <classes> <class name="com.thecopia.arion.tests.AddMemberToCourseTest" 
 			/> <class name="com.thecopia.arion.tests.LoginTest" /> </classes> -->
 	</test>
-	<test name="Firefox">
+	<test name="test2">
+		<parameter name="browserName" value="Firefox" />
+		<packages>
+			<package name="com.thecopia.arion.tests" />
+		</packages>
+	</test>
+	<test name="test3">
+		<parameter name="browserName" value="Chrome" />
+		<packages>
+			<package name="com.thecopia.arion.tests" />
+		</packages>
+	</test>
+	<test name="test4">
 		<parameter name="browserName" value="Firefox" />
 		<packages>
 			<package name="com.thecopia.arion.tests" />

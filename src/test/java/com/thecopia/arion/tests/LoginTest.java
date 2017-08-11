@@ -29,7 +29,6 @@ public class LoginTest {
 	public void setUp(String browser) throws MalformedURLException {
 //		driver = Utils.setBrowserUnderTest(System.getProperty("test.browser"));
 		driver = Utils.setBrowserUnderTest(browser);
-		System.out.println(System.getProperties());
 		driver.manage().window().setSize(new Dimension(1920, 1080));
 //		driver.manage().window().maximize(); // Could be used with later Firefox releases 
 		navigationPanel = new NavigationPanel(driver);

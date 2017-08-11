@@ -53,14 +53,15 @@ public class Utils {
 //		return new ChromeDriver();
 		} else {
 			System.setProperty("webdriver.gecko.driver", "C://automation//drivers//geckodriver.exe");
-			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-//			capabilities.setCapability("moz:firefoxOp1tions", options);
-//			capabilities.setCapability("marionette", true);
-//			capabilities.setCapability("platform", Platform.WIN10);
-//			capabilities.setCapability("browser", "firefox");
-			return new RemoteWebDriver(new URL("http://danielg:4444/wd/hub"), capabilities);
-//			return new FirefoxDriver(capabilities);
-//			return new FirefoxDriver();
+//			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+//			return new RemoteWebDriver(new URL("http://danielg:4444/wd/hub"), capabilities);
+			return new FirefoxDriver();
 		} 
 	}
 }
+
+//capabilities.setCapability("moz:firefoxOp1tions", options);
+//capabilities.setCapability("marionette", true);
+//capabilities.setCapability("platform", Platform.WIN10);
+//capabilities.setCapability("browser", "firefox");
+

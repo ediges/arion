@@ -27,29 +27,4 @@
 			<package name="com.thecopia.arion.tests" />
 		</packages>
 	</test>
-	<test name="test3">
-		<parameter name="browserName" value="Chrome" />
-		<packages>
-			<package name="com.thecopia.arion.tests" />
-		</packages>
-	</test>
-	<test name="test4">
-		<parameter name="browserName" value="Firefox" />
-		<packages>
-			<package name="com.thecopia.arion.tests" />
-		</packages>
-	</test>
-	<test name="test5">
-		<parameter name="browserName" value="Chrome" />
-		<packages>
-			<package name="com.thecopia.arion.tests" />
-		</packages>
-	</test>
-	<test name="test6">
-		<parameter name="browserName" value="Firefox" />
-		<packages>
-			<package name="com.thecopia.arion.tests" />
-		</packages>
-	</test>
-
 </suite>

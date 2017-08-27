@@ -48,7 +48,7 @@ public class Utils {
 			
 			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 //			capability.setCapability("jenkins.nodeName","(master)");
-			return new RemoteWebDriver(new URL("http://20.0.0.141:4444/wd/hub"), capabilities);
+			return new RemoteWebDriver(new URL("http://10.0.0.4:4444/wd/hub"), capabilities);
 //			return new RemoteWebDriver(new URL("http://danielg:4444/wd/hub"), capabilities);
 //			return new ChromeDriver();
 
@@ -57,7 +57,7 @@ public class Utils {
 			System.setProperty("webdriver.gecko.driver", "C://automation//drivers//geckodriver.exe");
 			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 //			capabilities.setCapability("jenkins.nodeName","(master)");
-			return new RemoteWebDriver(new URL("http://20.0.0.141:4444/wd/hub"), capabilities);
+			return new RemoteWebDriver(new URL("http://10.0.0.4:4444/wd/hub"), capabilities);
 //			return new RemoteWebDriver(new URL("http://danielg:4444/wd/hub"), capabilities);
 //			return new FirefoxDriver();
 		} 

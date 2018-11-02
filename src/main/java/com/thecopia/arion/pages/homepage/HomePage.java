@@ -1,4 +1,4 @@
-package com.thecopia.arion.pages;
+package com.thecopia.arion.pages.homepage;
 
 import java.util.List;
 

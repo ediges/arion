@@ -6,11 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Configuration;
 
 import com.thecopia.arion.pages.CoursePage;
 import com.thecopia.arion.pages.HomePage;
@@ -64,12 +61,9 @@ public class NavigationPanel extends LoadableComponent<NavigationPanel> {
 		Utils.waitForElementVisible(driver, mnuUserMenu);
 	}
 	
-	public LoginPage logout2(WebDriver driver) {
-		driver.get("https://edu.thecopia.com/temp/logout");
-		return new LoginPage(driver);
-	}
-	
 
+
+	
 	public LoginPage logout(WebDriver driver) {
 //		Utils.clickOn(driver, mnuUserMenu);
 //		Utils.clickOn(driver, itemSignOut);
@@ -77,12 +71,19 @@ public class NavigationPanel extends LoadableComponent<NavigationPanel> {
 		return new LoginPage(driver);
 	}
 
-	public HomePage gotoHomePage() {
+	public HomePage gotoHomePage(WebDriver drive) {
 		Utils.clickOn(driver, mnuMyCources);
 		return new HomePage(driver);
 	}
 
-	public PersonalLibraryPage gotoPersonalLibraryPage() {
+	@Override
+	public String toString() {
+		return "NavigationPanel [mnuMyCources=" + mnuMyCources + ", mnuPersonalLibrary=" + mnuPersonalLibrary
+				+ ", mnuReaders=" + mnuReaders + ", mnuUserMenu=" + mnuUserMenu + ", itemSignOut=" + itemSignOut
+				+ ", driver=" + driver + "]";
+	}
+
+	public PersonalLibraryPage gotoPersonalLibraryPage(WebDriver driver) {
 		Utils.clickOn(driver, mnuPersonalLibrary);
 		return new PersonalLibraryPage(driver);
 	}

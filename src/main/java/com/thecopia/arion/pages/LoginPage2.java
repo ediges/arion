@@ -12,11 +12,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import com.thecopia.arion.pages.homepage.HomePage;
 
 import com.thecopia.arion.utils.Utils;
 
-public class LoginPage extends LoadableComponent<LoginPage> {
+public class LoginPage2 extends LoadableComponent<LoginPage2> {
 
 	static Logger log = Logger.getLogger(CoursePage.class);
 
@@ -33,36 +32,32 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 	WebElement btnLogin;
 
 	WebDriver driver;
+	private String username;
+	private String password;
 	String baseUrl = "https://edu.thecopia.com";
-
-	public LoginPage(WebDriver driver) {
+	
+	public LoginPage2(WebDriver driver, String username, String password) {
 		this.driver = driver;
+		this.username = username;
+		this.password = password;
 		PageFactory.initElements(driver, this);
-		this.get();
-		log.debug("Login page is loaded");
+//		this.get();
+//		log.debug("Login page is loaded");
 	}
 
-	/**
-	 * Login procedure
-	 * @param username
-	 * @param password
-	 * @return Home page
-	 */
-	public HomePage login(String username, String password) {
+	public void login(String username, String password) {
 		edtUsername.sendKeys(username);
 		edtPassword.sendKeys(password);
 		btnLogin.click();
-		return new HomePage(driver);
+//		return new HomePage(driver);
 
 	}
-
 
 	@Override
 	protected void isLoaded() throws Error{
 		try {
 			Utils.waitPageLoading(driver);
 			Assert.assertTrue(edtUsername.isDisplayed());
-			System.out.println("Login page is loaded");
 		} catch (Exception e) {
 			throw new AssertionError();
 		}
@@ -72,7 +67,9 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 	protected void load() {
 		driver.get(baseUrl);
 		Utils.waitForElementVisible(driver, btnLogin);
-		System.out.println("Loading Login page");
+		edtUsername.sendKeys(username);
+		edtPassword.sendKeys(password);
+		btnLogin.click();
 }
 	
 

@@ -13,11 +13,14 @@ import org.testng.Assert;
 
 import com.thecopia.arion.utils.Utils;
 
-public class HomePage extends LoadableComponent<HomePage> {
+public class HomePage2 extends LoadableComponent<HomePage2> {
 	
-	static Logger log = Logger.getLogger(HomePage.class);
+	static Logger log = Logger.getLogger(HomePage2.class);
 
 	WebDriver driver;
+	private final LoadableComponent<?> parent;
+	private String username;
+	private String password;
 	
 	@FindBy (css = ".dropdown.userMenuItem")
 	@CacheLookup
@@ -35,12 +38,19 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@CacheLookup
 	WebElement btnJoinCourse;
 
+	@FindBy (css = ".caption")
+	@CacheLookup
+	List<WebElement> CoursesTitles;
+
 	
-	public HomePage(WebDriver driver) {
+	
+	public HomePage2(WebDriver driver, LoadableComponent<?> parent) {
 		this.driver = driver;
+		this.parent = parent;
+		
 		PageFactory.initElements(driver, this);
-		this.get();
-		log.debug("Home page is loaded");
+//		this.get();
+//		log.debug("Home page is loaded");
 	}
 	
 
@@ -48,9 +58,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	protected void isLoaded() throws Error {
 		try {
 			Utils.waitPageLoading(driver);
+			Utils.waitForElementVisible(driver, lblMyCources);
 			Assert.assertTrue(lblMyCources.isDisplayed());
-			System.out.println("Home page is loaded");
-
 		} catch (Exception e) {
 			throw new AssertionError();
 		}
@@ -58,8 +67,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@Override
 	protected void load() {
-		Utils.waitForElementVisible(driver, lblMyCources);
-		System.out.println("Loading Home page");
+		parent.get();
+//		Utils.waitForElementVisible(driver, lblMyCources);
 	}
 	
 	public boolean isCourseExists(String courseTitle) {
@@ -71,15 +80,14 @@ public class HomePage extends LoadableComponent<HomePage> {
 		return false;
 	}
 	
-/*	public CoursePage openCoursePage(String courseTitle) {
-		for (WebElement myCource : myCources) {
-			if (myCource.getAttribute("title").equalsIgnoreCase(courseTitle)) {
-				Utils.clickOn(driver, myCource);//myCource.click();
+	public CoursePage openCoursePage(String title) {
+		for (WebElement courseTitle : CoursesTitles) {
+			if (courseTitle.getAttribute("title").contains(title)) {
+				Utils.clickOn(driver, courseTitle);//myCource.click();
 				return new CoursePage(driver);
 			}
 		}
-		log.debug("Course " + courseTitle + " is not found");
+		log.debug("Course " + title + " is not found");
 		return null;
 	}
-*/
 }

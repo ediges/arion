@@ -19,31 +19,9 @@ import com.thecopia.arion.pages.HomePage;
 import com.thecopia.arion.pages.LoginPage;
 import com.thecopia.arion.utils.Utils;
 
-public class AddMemberToCourseTest2 {
+public class AddMemberToCourseTest2 extends BaseTestClass {
 
 	static Logger log = Logger.getLogger(AddMemberToCourseTest2.class);
-
-	WebDriver driver;
-	NavigationPanel navigationPanel;
-	CourseSideMenu courseSideMenu;
-	String baseUrl;
-
-	@Parameters({"browserName"})
-	@BeforeClass
-	public void setUp(String browser) throws MalformedURLException {
-//		driver = Utils.setBrowserUnderTest(System.getProperty("test.browser"));
-		driver = Utils.setBrowserUnderTest(browser);
-		driver.manage().window().setSize(new Dimension(1920, 1080));
-
-//		driver.manage().window().maximize();
-		navigationPanel = new NavigationPanel(driver);
-		courseSideMenu = new CourseSideMenu(driver);
-	}
-
-	@AfterClass
-	public void tearDown() {
-		driver.quit();
-	}
 
 	@Test
 	public void addCourseMember() throws InterruptedException {

@@ -1,4 +1,4 @@
-package com.thecopia.arion.pages;
+package com.thecopia.arion.pages.coursepage;
 
 import java.util.List;
 
@@ -63,6 +63,7 @@ public class CoursePage extends LoadableComponent<CoursePage> {
 		try {
 			Utils.waitPageLoading(driver);
 			Assert.assertTrue(elmLibraryItem.isDisplayed());
+			System.out.println("Course page is loaded");
 		} catch (Exception e) {
 			throw new AssertionError();
 		}
@@ -73,18 +74,18 @@ public class CoursePage extends LoadableComponent<CoursePage> {
 		Utils.waitForElementVisible(driver, elmLibraryItem);
 	}
 
-	public CourseNotebookPage openCourseNotebook() {
-		Utils.clickOn(driver, mnuNotebook);
-		return new CourseNotebookPage(driver);
-	}
+//	public CourseNotebookPage openCourseNotebook() {
+//		Utils.clickOn(driver, mnuNotebook);
+//		return new CourseNotebookPage(driver);
+//	}
 
-	public boolean isBookExistsInCource(String bookTitle) {
-		for (WebElement title : booksTitles) {
-			if (title.getAttribute("title").equalsIgnoreCase(bookTitle)) {
-				return true;
-			}
-		}
-		return false;
-	}
+//	public boolean isBookExistsInCourse(String bookTitle) {
+//		for (WebElement title : booksTitles) {
+//			if (title.getAttribute("title").equalsIgnoreCase(bookTitle)) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 
 }

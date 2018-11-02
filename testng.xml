@@ -15,4 +15,12 @@
 			<package name="com.thecopia.arion.tests" />
 		</packages>
 	</test>
+	<test name="IESuite">
+		<parameter name="browserName" value="Chrome" />
+		<packages>
+			<package name="com.thecopia.arion.tests" />
+		</packages>
+		<!-- <classes> <class name="com.thecopia.arion.tests.AddMemberToCourseTest" 
+			/> <class name="com.thecopia.arion.tests.LoginTest" /> </classes> -->
+	</test>
 </suite>

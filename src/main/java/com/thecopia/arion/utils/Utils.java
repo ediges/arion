@@ -46,23 +46,10 @@ public class Utils {
 
 	public static WebDriver setBrowserUnderTest(String browser) throws MalformedURLException {
 		if (browser.equalsIgnoreCase("Chrome")) {
-//			System.setProperty("webdriver.chrome.driver","C://automation//drivers//chromedriver.exe");
 			WebDriverManager.chromedriver().setup();
-			
-			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-//			return new RemoteWebDriver(new URL("http://10.0.0.2:4444/wd/hub"), capabilities); // for docker grid
-//			capability.setCapability("jenkins.nodeName","(master)");
-//			return new RemoteWebDriver(new URL("http://danielg:4444/wd/hub"), capabilities); // for jenkins grid
 			return new ChromeDriver();
-
-//		return new ChromeDriver();
 		} else {
-//			System.setProperty("webdriver.gecko.driver", "C://automation//drivers//geckodriver.exe");
 			WebDriverManager.firefoxdriver().setup();
-			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-//			return new RemoteWebDriver(new URL("http://10.0.0.2:4444/wd/hub"), capabilities); // for docker grid
-//			capabilities.setCapability("jenkins.nodeName","(master)");
-//			return new RemoteWebDriver(new URL("http://danielg:4444/wd/hub"), capabilities); // for jenkins grid
 			return new FirefoxDriver();
 		} 
 	}

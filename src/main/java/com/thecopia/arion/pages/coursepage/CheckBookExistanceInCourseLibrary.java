@@ -11,6 +11,7 @@ public class CheckBookExistanceInCourseLibrary{
 				return true;
 			}
 		}
+		System.out.println("Title is found");
 		return false;
 	}
 }

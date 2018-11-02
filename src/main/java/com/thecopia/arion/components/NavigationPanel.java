@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.thecopia.arion.pages.CoursePage;
-import com.thecopia.arion.pages.HomePage;
 import com.thecopia.arion.pages.LoginPage;
 import com.thecopia.arion.pages.PersonalLibraryPage;
 import com.thecopia.arion.utils.Utils;
@@ -71,10 +70,10 @@ public class NavigationPanel extends LoadableComponent<NavigationPanel> {
 		return new LoginPage(driver);
 	}
 
-	public HomePage gotoHomePage(WebDriver drive) {
-		Utils.clickOn(driver, mnuMyCources);
-		return new HomePage(driver);
-	}
+//	public HomePage gotoHomePage(WebDriver drive) {
+//		Utils.clickOn(driver, mnuMyCources);
+//		return new HomePage(driver);
+//	}
 
 	@Override
 	public String toString() {

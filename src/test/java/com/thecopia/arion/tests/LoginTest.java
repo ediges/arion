@@ -3,7 +3,7 @@ package com.thecopia.arion.tests;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Test;
 
-import com.thecopia.arion.pages.HomePage;
+import com.thecopia.arion.pages.homepage.HomePage;
 import com.thecopia.arion.pages.LoginPage;
 	
 public class LoginTest extends BaseTestClass {
@@ -23,9 +23,9 @@ public class LoginTest extends BaseTestClass {
 			log.info("Course " + courseTitle + " is exists");
 		}
 
-		navigationPanel.gotoPersonalLibraryPage(driver);
-		navigationPanel.gotoHomePage(driver);
-		navigationPanel.logout(driver);
+//		navigationPanel.gotoPersonalLibraryPage(driver);
+//		navigationPanel.gotoHomePage(driver);
+//		navigationPanel.logout(driver);
 		log.info("Test 'loginAsStudent' completed.");
 	}
 

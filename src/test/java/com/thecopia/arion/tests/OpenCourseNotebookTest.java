@@ -22,8 +22,12 @@ public class OpenCourseNotebookTest extends BaseTestClass {
 		System.out.println("Test 'openCourseNotebookTest' starting...");
 		LoginPage loginPage = new LoginPage(driver);
 		HomePage homePage = loginPage.login("ms1@mailinator.com", "123456");
+		
 		CoursePage coursePage = new HomePageOpenCoursePage().homePageOpenCoursePage(driver, homePage, "Algebra-Algebra - Spring - 2014"); 
-		if (new CheckBookExistanceInCourseLibrary().isBookExistsInCourseLibrary(coursePage ,"Java Cryptography")) System.out.println("Book is exists");
+		
+		if (new CheckBookExistanceInCourseLibrary().isBookExistsInCourseLibrary(coursePage ,"Java Cryptography")) 
+			System.out.println("Book is exists");
+		
 		new OpenCourseNotebook().openCourseNotebook(driver, coursePage);
 		
 		

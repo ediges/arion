@@ -14,7 +14,7 @@ import com.thecopia.arion.utils.Utils;
 
 public class PersonalLibraryPage extends LoadableComponent<PersonalLibraryPage>{
 
-	static Logger log = Logger.getLogger(HomePage.class);
+	static Logger log = Logger.getLogger(PersonalLibraryPage.class);
 
 	WebDriver driver;
 	
